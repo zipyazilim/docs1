@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flura Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Flura - Ultimate SaaS Agency Website Builder, Project Management System</h1>
+            <p>Flura, a SaaS website builder and CRM Panel.</p>
+        </header>
+        <section>
+            <h2>Installation</h2>
+            <p>Set up the project using bun.</p>
+            <pre><code>bunx create next-app@latest .</code></pre>
+            <p>Just press "Enter" on the options.</p>
+            <p>Navigate to your project path and transfer all the files inside the "Flura" folder you downloaded to the main directory of your project. Answer the "Replace item" question with "Replace all".</p>
+            <p>Install the following modules and versions:</p>
+            <p><strong>NOTE:</strong> Please make sure to use the same versions as in the project. Some vendors (e.g. Clerk) changed some tags in the last version. You don't want to have to change them.</p>
+            <pre><code>
+"@clerk/nextjs": "4.29.1",
+"@clerk/themes": "1.7.9",
+"@prisma/client": "^5.13.0",
+"@stripe/react-stripe-js": "2.4.0",
+"@stripe/stripe-js": "2.3.0",
+"@tremor/react": "3.16.1",
+"@types/react-beautiful-dnd": "^13.1.8",
+"prisma": "^5.13.0",
+"uploadthing": "^6.10.0",
+"All shadcn components",
+            </code></pre>
+            <p>You will find a copy of the modules to install in the package.json file.</p>
+        </section>
+        <section>
+            <h2>Stripe Settings</h2>
+            <p>Navigate to the .env file to adjust Stripe settings.</p>
+            <pre><code>
+Webhooks:
+{yourwebsiteURL}/agency
+{yourwebsiteURL}/subaccount
+            </code></pre>
+            <p>Paste the Stripe API Key, API Secret and Webhook Secret values to the .env file.</p>
+        </section>
+        <section>
+            <h2>Stripe Package Settings</h2>
+            <ul>
+                <li>Go to Stripe Dashboard.</li>
+                <li>Add a Product.</li>
+                <li>"Add Price" in Product.</li>
+                <li>Set its name to Basic (or your package name.) Enter other details and select a renewal period.</li>
+                <li>Copy the API ID of the price value you created and paste it back into your application, opposite the "priceId:" value of the package named "Basic" in the src>lib>constants.ts file.</li>
+                <li>Then go to prisma>schema.prisma in your application and paste line 399 - 400 (under "enum Plan").</li>
+                <li>Do the same for the Unlimited package. Create a Stripe price, this time paste it in the field with the value "Unlimited SaaS".</li>
+                <li>Now create a new product in Stripe. (Note: Not a new price tag, but a separate product.)</li>
+                <li>Name it "Support Package" (or whatever name you want).</li>
+                <li>Create a new price. Set the price and name of your service.</li>
+                <li>Copy the value starting with "prod_" at the top right of the page. (NOTE: make sure not to copy the value price_. Product is at the top right of the page).</li>
+                <li>Now go to src>lib>constant.ts and paste it opposite the id: value in the field titled "Priority Support" on line 61. Make sure not to delete the quotation mark.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Clerk Settings</h2>
+            <p>We will use the Clerk tool to log in to the application.</p>
+            <ul>
+                <li>Log in to your Clerk account.</li>
+                <li>Create an app with Production mode.</li>
+                <li>Go User+Authentication>Email, Phone, Username</li>
+                <li>Open "E-Mail address" and set required.</li>
+                <li>Close "username" tag.</li>
+                <li>Open "Password" and "Email verification link".</li>
+                <li>Open "Name".</li>
+                <li>Go to "API Keys" tab and copy your Clerk API Keys.</li>
+                <li>Go back Visual Studio Code and go .env file. (PS: We are added a env.example file. Please copy and paste your .env file.)</li>
+                <li>Paste Clerk API Keys in the corresponding field.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Uploadthing Settings</h2>
+            <p>We will use Uploadthing for media storage.</p>
+            <ul>
+                <li>Go to your Uploadthing account.</li>
+                <li>Add and App.</li>
+                <li>Copy your APP ID and Secret key.</li>
+                <li>Paste your keys into the .env file.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>SQL Export</h2>
+            <p>After completing your project, you should output it to the database. We recommend Railway or Planetscale for this. Railway was used in this project. If you don't know how to install Railway on your computer, have a simple look at <a href="https://docs.railway.app/" target="_blank">Railway Docs</a>. Install it with Terminal and send a db push after making database settings from the .env file. Now you are ready!</p>
+        </section>
+        <section>
+            <h2>Demo</h2>
+            <p><a href="https://flura.world" target="_blank">Flura Demo</a></p>
+            <p>Email: demo@user.com</p>
+            <p>Password: demouser</p>
+        </section>
+        <section>
+            <h2>One More Thing - Support & Help</h2>
+            <p><strong>Important NOTE:</strong> If you get stuck, or get an error in the installation, contact us first instead of rating or leaving a comment. <a href="mailto:halilp0019@gmail.com">halilp0019@gmail.com</a> - we will help you. We can even connect you with AnyDesk if needed.</p>
+        </section>
+    </div>
+</body>
+</html>
